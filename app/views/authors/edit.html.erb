@@ -24,7 +24,7 @@
         <div class="box-body">
           <div class="form-group form-group-margin">
             <label>Name</label>
-            <%= f.text_field :name, class:"form-control" %>
+            <%= f.text_field :name, class:"form-control", id:"name-input" %>
           </div>
         </div>
         <div class="box-footer form-group-margin">
@@ -35,3 +35,14 @@
     </div>
   </div>
 </section>
+<script>
+$(document).ready(function(){
+    $("#name-input").keypress(function(event){
+        var inputValue = event.which;
+        // allow letters and whitespaces only.
+        if(!(inputValue >= 65 && inputValue <= 120) && (inputValue != 32 && inputValue != 0)) { 
+            event.preventDefault(); 
+        }
+    });
+});
+</script>
