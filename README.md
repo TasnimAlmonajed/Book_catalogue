@@ -7,7 +7,7 @@ We used Ruby on rails framework for developing the application. We used Devise f
 
 When you start the application, the home page will be the list of existing books, if the database is not empty. 
 
-In order to add books, you have to register and log in. After that, you are going to see on nav menu 'Add new book' link. When you click, you have to fill all fields (all fileds are required). Notice that, ISBN is unique and there is a special format for it (the input filed is masked). Also, in order to successfully add the book, you have to have authors in the database. Go to link 'Add new author' and add new. 
+In order to add books, you have to register as new user or to log in as old user. After that, you are going to see on nav menu 'Add new book' link. When you click the link, you have to fill all fields (all fileds are required). Notice that, ISBN is unique and there is a special format for it (the input filed is masked). Also, in order to successfully add the book, you have to have authors in the database, so you can choose at least one author. Go to link 'Add new author' and add new if there is no the wanted author. 
 
 ***Note: 'It was required for me to create Book table, which is going to have author as a column. But I decided to seperate the table into two tables: Book table and Author table; and because of many-to-many relation, we have one more table.'
 
