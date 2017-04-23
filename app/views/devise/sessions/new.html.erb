@@ -1,0 +1,36 @@
+<%= content_for :page_title, "Log in" %>
+<div class="col-md-6">
+  <div class="box box-default form-margins">
+    <div class="box-header with-border form-group-margin">
+      <h3 class="box-title">Log in</h3>
+    </div>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+   
+      <ul class="error-list"> 
+        <% if !flash.alert.blank? %>
+          <% flash.each do |name, msg| %>
+            <li> 
+              <%= msg if msg.is_a?(String) %>
+            </li>
+          <% end %> 
+        <% end %>
+      </ul>
+    
+      <div class="box-body">
+        <div class="form-group form-group-margin">
+          <label>Email</label>
+          <%= f.text_field :email, class:"form-control", autofocus: true %>
+        </div>
+        <div class="form-group form-group-margin">
+          <label>Passowrd</label><i>(minimum 6 characters)</i>
+          <%= f.password_field :password, class:"form-control", autocomplete: "off" %>
+        </div>
+      </div>
+      <div class="box-footer form-group-margin">
+        <%= f.submit "Log in", class:"btn btn-primary btn-block" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

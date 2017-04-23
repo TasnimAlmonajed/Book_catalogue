@@ -1,0 +1,46 @@
+<%= content_for :page_title, "Authors" %>
+
+<% if flash[:alert]%>
+  <%= render "common/alert" %>
+<% end %>
+
+<section class="content-header cst-section">
+  <div>
+    <h2 class="cst-header1">Authors</h2>
+  </div>
+</section>
+
+<section class="content cst-section">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tr>
+              <th>Name</th>
+              <th class="th-width">Edit</th>
+              <th class="th-width">Delete</th>
+            </tr>
+            <tbody>
+              <% @authors.each do |author| %>
+                <tr>
+                  <td>
+                    <%= author.name %>
+                  </td>
+                  <td><%= link_to edit_author_path(author) do %>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <% end %>
+                  </td>
+                  <td><%= link_to author, method: :delete, data: { confirm: "Are you sure you want to remove '#{author.name}' author?" } do %>
+                    <span class="glyphicon glyphicon-remove"></span>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

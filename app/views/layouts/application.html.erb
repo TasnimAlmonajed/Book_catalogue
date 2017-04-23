@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BookCatalogue | <%= yield(:page_title) %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  </head>
+
+  <body class="hold-transition skin-blue layout-top-nav">
+    <div class="wrapper">
+
+      <header class="main-header">
+        <nav class="navbar navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <%= link_to root_path,  class:"navbar-brand" do %>
+                <b>Book catalogue</b>
+              <% end %>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+              </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+              <% if user_signed_in? %>
+                <ul class="nav navbar-nav">
+                  <li class="<%= active_class(new_book_path) %>">
+                    <%= link_to new_book_path do %>
+                      Add new book
+                    <% end %>
+                  </li>
+                  <li class="<%= active_class(authors_path) %>">
+                    <%= link_to authors_path do %>
+                      Authors
+                    <% end %>
+                  </li>
+                  <li class="<%= active_class(new_author_path) %>">
+                    <%= link_to new_author_path do %>
+                      Add new author
+                    <% end %>
+                  </li>
+                </ul>
+                <% end %>
+            </div>
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav">
+                <% if !user_signed_in? %>
+                  <li class="<%= active_class(new_user_registration_path) %>">
+                    <%= link_to new_user_registration_path do %>
+                      Registration
+                    <% end %>
+                  </li>
+                  <li class="<%= active_class(new_user_session_path) %>">
+                    <%= link_to new_user_session_path do %>
+                      Log in
+                    <% end %>
+                  </li>
+                  <% else %>
+                    <li>
+                      <%= link_to destroy_user_session_path, method: :delete do %>
+                        Log out
+                      <% end %>
+                    </li>
+                <% end %>
+              </ul>
+            </div>
+
+          </nav>
+        </header>
+
+      <div class="content-color">
+        <% if user_signed_in? %>
+          <p align="right" class="user-email-style">
+            Welcome <strong><i><%= current_user.email %></i></strong>
+          </p>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+
+    </div>
+  </body>
+</html>
+

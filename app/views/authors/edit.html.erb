@@ -1,0 +1,37 @@
+<%= content_for :page_title, "Edit Author" %>
+
+<% if flash[:alert]%>
+  <%= render "common/alert" %>
+<% end %>
+
+<section class="content cst-section">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="box form-margins">
+        <div class="box-header with-border form-group-margin">
+          <h3 class="box-title">Edit Author</h3>
+        </div>
+
+        <%= form_for @author do |f| %>
+          <% if @author.errors.any? %>
+            <% @author.errors.full_messages.each do |error| %>
+            <ul class="error-list">
+              <li> <%= error %></li>
+            </ul>
+            <% end %>
+          <% end %>
+
+        <div class="box-body">
+          <div class="form-group form-group-margin">
+            <label>Name</label>
+            <%= f.text_field :name, class:"form-control" %>
+          </div>
+        </div>
+        <div class="box-footer form-group-margin">
+          <%= f.submit class:"btn btn-primary" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

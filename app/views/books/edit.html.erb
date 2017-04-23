@@ -1,0 +1,55 @@
+<%= content_for :page_title, "Edit Book" %>
+
+<section class="content cst-section">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="box form-margins">
+        <div class="box-header with-border form-group-margin">
+          <h3 class="box-title">Edit Book</h3>
+        </div>
+
+        <%= form_for @book do |f| %>
+          <% if @book.errors.any? %>
+            <% @book.errors.full_messages.each do |error| %>
+            <ul class="error-list">
+              <li> <%= error %></li>
+            </ul>
+            <% end %>
+          <% end %>
+
+        <div class="box-body">
+          <div class="form-group form-group-margin">
+            <label>Title</label>
+            <%= f.text_field :title, class:"form-control" %>
+          </div>
+          <div class="form-group form-group-margin">
+            <label>ISBN</label>
+            <%= f.text_field :isbn, class:"form-control", id: "isbn_number" %>
+          </div>
+          <div class="form-group form-group-margin">
+            <label>Short description</label>
+            <%= f.text_area :short_description, class:"form-control" %>
+          </div>
+           <div class="form-group form-group-margin">
+            <label>Authors</label>
+              <%= select_tag "authors" , options_from_collection_for_select(Author.all, :id, :name, @book.authors.ids), { multiple: true , class: 'form-control'} %>
+          </div>
+        </div>
+        <div class="box-footer form-group-margin">
+          <%= f.submit class:"btn btn-primary" %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+var isbn_number = $('#isbn_number');
+var old_value = $('#isbn_number').val();
+isbn_number.mask("000-09999-099999-0999999-099");
+isbn_number.keyup(function() {
+  if (isbn_number.val().length > 17) 
+    isbn_number.val(old_value);
+});
+</script>
